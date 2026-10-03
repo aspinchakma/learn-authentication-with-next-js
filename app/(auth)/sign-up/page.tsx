@@ -48,6 +48,7 @@ export default function SignUpForm() {
       name: formData.name,
       email: formData.email,
       password: formData.password,
+      callbackURL: "/",
     });
     console.log(data, error);
   };

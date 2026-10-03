@@ -9,11 +9,30 @@ if (!uri) {
 }
 
 const client = new MongoClient(uri);
-const db = client.db();
+const db = client.db("better-auth");
 export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
+
+  socialProviders: {
+    google: {
+      clientId: process.env.BETTER_AUTH_GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.BETTER_AUTH_GOOGLE_SECRET!,
+    },
+    github: {
+      clientId: process.env.BETTER_AUTH_GITHUB_CLIENT_ID as string,
+      clientSecret: process.env.BETTER_AUTH_GITHUB_SECRET as string,
+    },
+  },
+
+  account: {
+    accountLinking: {
+      enabled: true,
+      trustedProviders: ["google"],
+    },
+  },
+
   database: mongodbAdapter(db, {
     client,
   }),

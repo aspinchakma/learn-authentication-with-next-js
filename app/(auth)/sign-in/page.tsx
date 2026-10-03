@@ -27,6 +27,18 @@ export default function SignInPage() {
     //   password: formData.password,
     // });
   };
+  const handleGoogleSignIn = async () => {
+    const resData = await signIn.social({
+      provider: "google",
+    });
+    console.log(resData);
+  };
+  const handleGithub = async () => {
+    const resdata = await signIn.social({
+      provider: "github",
+    });
+    console.log(resdata);
+  };
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-white px-4">
@@ -98,10 +110,26 @@ export default function SignInPage() {
 
           <p className="mt-6 text-center text-sm text-slate-500">
             Don&apos;t have an account?{" "}
-            <a href="/signup" className="font-semibold text-slate-900">
+            <a href="/sign-up" className="font-semibold text-slate-900">
               Sign Up
             </a>
           </p>
+          <div className="flex justify-center mt-5">
+            <button
+              className="mx-auto text-[14px] mt-4 px-3 py-2 rounded-xl bg-black text-white font-bold"
+              onClick={handleGoogleSignIn}
+            >
+              Sign In With Google Account
+            </button>
+          </div>
+          <div className="flex justify-center mt-5">
+            <button
+              className="mx-auto text-[14px] mt-4 px-3 py-2 rounded-xl bg-black text-white font-bold"
+              onClick={handleGithub}
+            >
+              Sign In With Github Account
+            </button>
+          </div>
         </div>
       </div>
     </main>
